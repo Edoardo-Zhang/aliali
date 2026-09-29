@@ -1,0 +1,62 @@
+{
+  "name": "aliali-client",
+  "productName": "AliAli",
+  "version": "1.0.0",
+  "description": "AliAli 桌面客户端 —— 只看 AI 圈",
+  "author": "AliAli",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "icon": "electron scripts/make-icon.cjs",
+    "smoke": "electron . --smoke-test",
+    "dist": "electron-builder --win nsis --x64",
+    "publish": "node scripts/publish.mjs",
+    "release": "npm run icon && npm run dist && npm run publish"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.aliali.desktop",
+    "productName": "AliAli",
+    "copyright": "AliAli · 只看 AI 圈",
+    "asar": true,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "client.json",
+      "build/icon.png",
+      "package.json"
+    ],
+    "extraResources": [
+      { "from": "../server.js", "to": "site/server.js" },
+      { "from": "../config.js", "to": "site/config.js" },
+      { "from": "../package.json", "to": "site/package.json" },
+      { "from": "../public", "to": "site/public" },
+      { "from": "../data/cache.json", "to": "site/seed-cache.json" }
+    ],
+    "win": {
+      "target": ["nsis"],
+      "icon": "build/icon.png",
+      "artifactName": "AliAli-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "AliAli",
+      "installerLanguages": ["zh_CN"],
+      "language": "2052",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}

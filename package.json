@@ -1,0 +1,13 @@
+{
+  "name": "aliali",
+  "version": "1.0.0",
+  "description": "AliAli —— 仿哔哩哔哩风格的 AI 圈视频站（实时同步 AI 博主与 AI 公司官方投稿）",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

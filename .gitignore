@@ -1,0 +1,16 @@
+# 依赖与构建产物
+node_modules/
+client/node_modules/
+client/dist/
+
+# 客户端安装包只发 Releases，不进仓库
+downloads/*.exe
+downloads/*.blockmap
+
+# 运行时缓存与日志
+data/cache.json
+*.log
+
+# 系统杂物
+Thumbs.db
+.DS_Store
